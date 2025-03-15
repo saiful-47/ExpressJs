@@ -45,6 +45,12 @@ app.get('/set/cookies', function(req, res){
   res.cookie('city', 'Dhaka');
   res.cookie('home_town','Cumilla');
   res.end('cookies set successfully');
+});
+
+app.get('/clear/cookies', function(req, res){
+  res.clearCookie('name');
+  res.clearCookie('age');
+  res.end('cookie clear success');
 })
 
 app.listen(port, ()=>{
