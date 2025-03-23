@@ -53,6 +53,14 @@ app.get('/clear/cookies', function(req, res){
   res.end('cookie clear success');
 })
 
+// get parameter req
+app.get('/name', function(req, res){
+  let firstName = req.query.firstName;
+  let lastName = req.query.lastName;
+
+  res.end(firstName + " " +lastName);
+});
+
 app.listen(port, ()=>{
   console.log('server run sucessful');
 })
