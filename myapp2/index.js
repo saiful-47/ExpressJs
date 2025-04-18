@@ -1,9 +1,16 @@
 const express = require('express')
 
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var multer = multer();
+
 
 const app = express();
+
+
 app.use(bodyParser.json());
+app.use(multer.array());
+app.use(express.static('public'));
 const port = 3000;
 
 
@@ -79,6 +86,13 @@ app.post('/body/req', function(req, res){
   let name = JsonData['name'];
   let city = JsonData['city'];
   res.send('Name: '+name+ 'City:' +city);
+});
+
+// post form data multipart req
+
+app.post('/form/data', function(req, res){
+  let JSONData = req.body;
+  res.send(JSON.stringify(JSONData));
 });
 
 app.listen(port, ()=>{
