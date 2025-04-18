@@ -61,6 +61,14 @@ app.get('/name', function(req, res){
   res.end(firstName + " " +lastName);
 });
 
+// post request with header properties
+
+app.post('/header/req', function(req, res){
+  let userName = req.header('userName');
+  let password = req.header('password');
+  res.send("User Name:" +userName +"Password: " +password);
+})
+
 app.listen(port, ()=>{
   console.log('server run sucessful');
 })
