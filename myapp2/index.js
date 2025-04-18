@@ -76,8 +76,9 @@ app.post('/header/req', function(req, res){
 //post request with body
 app.post('/body/req', function(req, res){
   let JsonData = req.body;
-  let JsonString = JSON.stringify(JsonData);
-  res.send(JsonString);
+  let name = JsonData['name'];
+  let city = JsonData['city'];
+  res.send('Name: '+name+ 'City:' +city);
 });
 
 app.listen(port, ()=>{
