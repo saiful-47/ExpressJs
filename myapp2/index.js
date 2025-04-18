@@ -1,6 +1,9 @@
 const express = require('express')
 
+var bodyParser = require('body-parser');
+
 const app = express();
+app.use(bodyParser.json());
 const port = 3000;
 
 
@@ -68,6 +71,14 @@ app.post('/header/req', function(req, res){
   let password = req.header('password');
   res.send("User Name:" +userName +"Password: " +password);
 })
+
+
+//post request with body
+app.post('/body/req', function(req, res){
+  let JsonData = req.body;
+  let JsonString = JSON.stringify(JsonData);
+  res.send(JsonString);
+});
 
 app.listen(port, ()=>{
   console.log('server run sucessful');
