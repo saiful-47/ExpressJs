@@ -3,6 +3,15 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+app.use(function (req,res,next){
+  console.log('application level middleware');
+  next();
+})
+
+app.use('/about', function (req,res,next){
+  console.log("This about middleware");
+  next();
+})
 app.get('/', (req, res) => {
   res.send('Home page')
 })
