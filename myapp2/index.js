@@ -14,6 +14,29 @@ app.use(express.static('public'));
 const port = 3000;
 
 
+// file upload
+var storage = multer.disks({
+  destination: function (req,file,callBack){
+    callBack(null, './uploads');
+  },
+  filename: function (req,file,callBack){
+    callBack(null,file.originalname);
+  }
+});
+
+var upload = multer({storage:storage}).single('myfile');
+
+app.post('/file/upload', function(req,res){
+  upload(req,res, function(error){
+    if(error){
+      res.send("File upload fail");
+    }else{
+      res.send("File upload success");
+    }
+  })
+})
+
+
 
 app.get('/json_data', function(req, res){
 
